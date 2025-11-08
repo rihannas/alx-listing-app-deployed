@@ -38,11 +38,4 @@ module.exports = {
     },
   },
   plugins: [],
-
-  compilerOptions: {
-    baseUrl: '.',
-    paths: {
-      '@/*': ['./*'],
-    },
-  },
 };
