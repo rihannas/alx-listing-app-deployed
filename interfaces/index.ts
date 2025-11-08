@@ -11,11 +11,11 @@ export interface Offers {
 }
 
 export interface PropertyProps {
-  id: string | number;
+  id?: string | number;
   name: string;
   address: Address;
   rating: number;
-  description: string;
+  description?: string;
   category: string[];
   price: number;
   offers: Offers;
