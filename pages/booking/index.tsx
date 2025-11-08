@@ -21,7 +21,7 @@ export default function BookingForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -37,9 +37,9 @@ export default function BookingForm() {
     }
 
     try {
-      // 👇 Replace with your actual backend API URL if deployed
+      // ✅ Use environment variable for API base URL
       const response = await axios.post(
-        'https://your-backend-domain.com/api/bookings/',
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/bookings/`,
         formData
       );
 
@@ -56,8 +56,12 @@ export default function BookingForm() {
           billingAddress: '',
         });
       }
-    } catch (err: any) {
-      console.error(err);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error('Axios error:', err.response?.data || err.message);
+      } else {
+        console.error('Unexpected error:', err);
+      }
       setError('❌ Failed to submit booking. Please try again.');
     } finally {
       setLoading(false);
