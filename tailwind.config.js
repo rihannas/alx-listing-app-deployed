@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme'); // <-- import defaultTheme
-
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -22,7 +20,6 @@ module.exports = {
           800: '#1e40af',
           900: '#1e3a8a',
         },
-        gray: defaultTheme.colors.gray, // <-- now works
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
