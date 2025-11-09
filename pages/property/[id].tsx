@@ -13,7 +13,7 @@ export default function PropertyDetailPage() {
 
   useEffect(() => {
     const fetchProperty = async () => {
-      if (!id) return; // Wait for router to provide id
+      if (!id) return;
 
       try {
         setLoading(true);
@@ -31,6 +31,16 @@ export default function PropertyDetailPage() {
 
     fetchProperty();
   }, [id]);
+
+  // Add safety check for build
+  if (typeof window === 'undefined') {
+    // This runs during build - return a safe component
+    return (
+      <div className='max-w-6xl mx-auto py-10 px-4'>
+        <div>Loading...</div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
